@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import candidateModel from '../Models/CandidateModels';
+import candidateModel from '../Models/candidateModels';
 import axios from 'axios'
 
 

@@ -6,10 +6,11 @@ import connectDB from './connectDB'
 import bodyParser from "body-parser"
 import jobRouter from './Routers/jobRouter'
 import candidateRouter from './Routers/candidateRouter'
-
+import env from 'dotenv'
+env.config()
 
 const app=express();
-const port=7000
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,6 +24,6 @@ app.get('/',(req,res)=>{
 app.use('/jobs',jobRouter)
 app.use('/candidate',candidateRouter)
 
-app.listen(port,()=>{
-    console.log(`example app listening on http://localhost:${port}`)
+app.listen(()=>{
+    console.log(`example app listening on http://localhost:${process.env.PORT}`)
 })

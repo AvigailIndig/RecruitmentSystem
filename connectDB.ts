@@ -1,17 +1,21 @@
-import mongoose, { Connection } from 'mongoose';
 
-const uri = 'mongodb+srv://Avigail:Ox3sRAtAtu08YPoZ@cluster0.2q5vao0.mongodb.net/recruitmentDB?retryWrites=true&w=majority';
-// connection to the local-optional localhost
-const uriLocal = 'mongodb://localhost:27017/TinyUrlDB';
+import mongoose, { Connection } from 'mongoose';
+import env from 'dotenv';
+
+
+env.config()
+
+const url = process.env.VIRTUAL_CONNECTION_STRING;
+const urlLocal = process.env.LOCAL_CONNECTION_STRING;
 
 const connectDB = async (): Promise<Connection> => {
-  const connection = await mongoose.connect(uri);
+  const connection = await mongoose.connect(url!);
   return connection.connection;
 };
 
 const database = mongoose.connection;
 
-database.on('error', (error) => {
+database.on('error', (error: Error) => {
   console.log(error);
 });
 
